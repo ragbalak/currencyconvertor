@@ -1,4 +1,3 @@
-
 # Currency Converter App
 
 A React + TypeScript application that converts currencies using live exchange rates.  
@@ -6,7 +5,8 @@ Built with **Ant Design** for UI and includes features like searchable dropdowns
 
 ---
 
-##  Features
+## Features
+
 - Fetches live exchange rates from ExchangeRate API.
 - Fetches currency names from Open Exchange Rates.
 - Searchable dropdown with country flags.
@@ -18,7 +18,8 @@ Built with **Ant Design** for UI and includes features like searchable dropdowns
 
 ---
 
-##  Tech Stack
+## Tech Stack
+
 - **React** (with Hooks)
 - **TypeScript**
 - **Ant Design**
@@ -27,9 +28,12 @@ Built with **Ant Design** for UI and includes features like searchable dropdowns
 ---
 
 ## 📦 Installation
+
 Clone the repository:
+
 ```bash
 git clone https://github.com/ragbalak/currencyconvertor
 cd currency-converter
 run npm install
 run npm run start
+```

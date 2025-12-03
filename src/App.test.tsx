@@ -1,9 +1,23 @@
 import React from 'react';
+import 'antd/dist/reset.css';
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import CurrencyConverter from './Components/CurrencyConverter';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
+beforeAll(() => {
+  window.matchMedia = jest.fn().mockImplementation((query) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(), // deprecated
+    removeListener: jest.fn(), // deprecated
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  }));
+});
+
+test('renders Currency Converter text', () => {
+  render(<CurrencyConverter />);
+  const linkElement = screen.getByText(/Currency Converter/i);
   expect(linkElement).toBeInTheDocument();
 });
