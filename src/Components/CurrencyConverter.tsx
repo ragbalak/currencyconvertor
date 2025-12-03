@@ -23,12 +23,13 @@ const CurrencyConverter: React.FC = () => {
   const [result, setResult] = useState<string | null>(null);
   const [error, setError] = useState<string>('');
   const [deadline, setDeadline] = useState<number | null>(null);
-
-  useEffect(() => {
+ useEffect(() => {
     fetch('https://openexchangerates.org/api/currencies.json')
       .then((res) => res.json())
       .then((data) => setCurrencies(data))
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err));    
+  }, []);
+  useEffect(() => {   
     if (fromCurrency) {
       fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`)
         .then((res) => res.json())
@@ -41,6 +42,7 @@ const CurrencyConverter: React.FC = () => {
     /^\d+(\.\d{1,2})?$/.test(value);
 
   const handleConvert = (): void => {
+    resultreset();
     if (!validateAmount(amount)) {
       setError(`${amount} is not a valid number`);
       setResult(null);
@@ -52,7 +54,7 @@ const CurrencyConverter: React.FC = () => {
     setResult(converted.toFixed(2));
     setDeadline(Date.now() + 10 * 60 * 1000);
   };
-  const handleClick = (): void => {
+  const resultreset = (): void => {
     setResult(null);
     setDeadline(null);
   };
@@ -70,8 +72,8 @@ const CurrencyConverter: React.FC = () => {
       : 'https://via.placeholder.com/24x18';
   };
 
-  return (
-    <Row justify="center" align="middle">
+  return (    
+    <Row style= {{height:'100vh'}} justify="center" align="middle">
       <Col>
         <Card title="Currency Converter">
           <Row justify="center" align="middle">
@@ -80,9 +82,7 @@ const CurrencyConverter: React.FC = () => {
                 size="middle"
                 placeholder="Enter amount"
                 value={amount}
-                onClick={handleClick}
-                onChange={(e) => setAmount(e.target.value)}
-                // Add icon inside the input (right side)
+                onChange={(e) => setAmount(e.target.value)}                
                 suffix={
                   <Tooltip title="Convert">
                     <SwapOutlined
