@@ -20,6 +20,7 @@ const CurrencyDropdown: React.FC<CurrencyDropdownProps> = ({
     <Select
       data-testid="currency-select"
       size="large"
+      style={{ width: '100%' }}
       showSearch
       value={selectedCurrency}
       onChange={onChange}
